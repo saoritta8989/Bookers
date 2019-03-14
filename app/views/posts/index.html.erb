@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+	<!-- css -->
+<link rel="stylesheet" href="posts.css">
+
+
+<h1> Books </h1>
+
+<%= flash[:notice] %>
+</head>
+
+<body>
+
+<table>
+	<thead>
+	<tr>
+		<th>Title</th>
+		<th>Body</th>
+		
+	</tr>
+  </thead>
+
+	<% @posts.each do |post| %>
+	<tbody>
+		<tr>
+			<td><%= post.title %></td>
+			<td><%= post.body %></td>
+			<td><%= link_to "Show" ,post_path(post.id) %></td>
+			<td><%= link_to "Edit" ,edit_post_path(post.id)%></td>
+			<td> <%= link_to "Destroy" ,destroy_post_path(post.id),method: :delete, data: {:confirm => "Are you sure?"} %> </td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
+
+
+
+<h2> New book </h2>
+<!-- form_for部分 -->
+<%= form_for(@post) do |f| %>
+
+    <h4> title </h4>
+    <%= f.text_field :title %>
+
+    <h4> body </h4>
+    <%= f.text_area :body %>
+
+    <%= f.submit 'Create book' %>
+
+    <% end %>
+
+</body>
+    </html>
+
