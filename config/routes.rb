@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 get 'posts/new'
 
-get 'top' => 'root#top'
+root 'root#top'
 
 get 'posts' => 'posts#index'
 
