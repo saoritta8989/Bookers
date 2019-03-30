@@ -6,7 +6,8 @@ class PostsController < ApplicationController
 		post = Post.new(post_params)
 		#DBへ保存する
 		post.save
-        redirect_to post_path(post.id)
+       flash[:notice] = "Book was succesfully"
+       redirect_to post_path(post.id)
 
 	end
 
