@@ -1,8 +1,4 @@
 class PostsController < ApplicationController
-	def new
-		# 空のモデルをビューへ渡す
-		
-	end
 
 	#以下を追加
 	def create
@@ -10,10 +6,11 @@ class PostsController < ApplicationController
 		post = Post.new(post_params)
 		#DBへ保存する
 		post.save
-		flash[:notice] = "Book was succesfully"
-       #index画面へリダイレクト
-		redirect_to posts_path
+        redirect_to post_path(post.id)
+
 	end
+
+		
 
 	def index
 		@posts = Post.all
@@ -22,6 +19,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+
 	end
 
 	def edit
@@ -31,7 +29,7 @@ class PostsController < ApplicationController
 	def update
 		post = Post.find(params[:id])
 		post.update(post_params)
-		redirect_to posts_path(post.id)
+		redirect_to post_path(post.id)
     end
 
     def destroy
